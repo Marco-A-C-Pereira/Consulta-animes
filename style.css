@@ -1,0 +1,145 @@
+* {
+  margin: 0;
+  border: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-size: 1rem;
+  font-family: "Segoe UI";
+}
+
+body {
+  background: #1A1A1A;
+  color: white;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-items: center;
+  width: 90vw;
+  margin: auto;
+}
+
+header {
+  background: orange;
+  width: 100%;
+  box-shadow: 0 2px 2px #cc8400;
+}
+header h1 {
+  font-size: 2rem;
+  letter-spacing: 0.1rem;
+}
+header button {
+  background: greenyellow;
+  color: orange;
+  text-transform: uppercase;
+  padding: 1vh 2.5vh;
+}
+
+.project-description {
+  margin: 3vh 0;
+  position: relative;
+}
+.project-description .project-description-circular-bg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 100%;
+  aspect-ratio: 1/1;
+  filter: blur(10px);
+  border-radius: 50%;
+  background: #1f1f1f;
+  background-size: cover;
+  z-index: -999;
+}
+.project-description p {
+  opacity: 0;
+  font-size: 1.1rem;
+  text-align: justify;
+  text-align-last: center;
+}
+.project-description #project-description-button {
+  position: absolute;
+}
+.project-description .project-description-button-label {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 1;
+  color: white;
+  font-size: 1.5rem;
+  text-transform: uppercase;
+  text-align: center;
+  white-space: nowrap;
+  text-shadow: 0px 2px black;
+  transition: opacity 0.3s;
+  animation: bob 1s infinite alternate ease-in-out;
+}
+@keyframes bob {
+  from {
+    top: 45%;
+  }
+  to {
+    top: 55%;
+  }
+}
+.project-description #project-description-button {
+  appearance: none;
+  position: absolute;
+  z-index: 999;
+  width: 100%;
+  height: 100%;
+}
+.project-description #project-description-button:checked:checked + .project-description-button-label {
+  opacity: 0;
+}
+.project-description #project-description-button:checked:checked ~ p {
+  opacity: 1;
+}
+
+.search {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-items: center;
+}
+.search > label {
+  font-size: 1.3rem;
+  margin-bottom: 0.5vh;
+  color: orange;
+}
+.search input[type=search] {
+  width: 100%;
+  font-size: 1.1rem;
+  outline: 2px solid white;
+  background: #343434;
+}
+
+.search-options {
+  display: flex;
+  width: 100%;
+  margin-top: 1.2vh;
+}
+.search-options label {
+  cursor: pointer;
+  width: 100%;
+  text-align: center;
+}
+.search-options span {
+  font-size: 1.3rem;
+  transition: color 0.4s;
+}
+.search-options input[type=radio] {
+  display: none;
+}
+.search-options input[type=radio]:checked ~ span {
+  color: orange;
+}
+.search-options input[type=radio]:checked ~ span:active {
+  color: orange;
+}
+
+/*# sourceMappingURL=style.css.map */

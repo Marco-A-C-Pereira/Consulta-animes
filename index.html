@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Consulta Animes</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="style.css" />
+    <script type="module" src="main.js"></script>
+  </head>
+  <body>
+    <header>
+      <h1>Lista de Animes</h1>
+      <nav>
+        <button>Comparar</button>
+      </nav>
+    </header>
+    <main>
+      <section class="project-description">
+            <div class="project-description-circular-bg"></div>
+
+        <input type="checkbox" id="project-description-button"/>
+        <label class="project-description-button-label" for="project-description-button"> Saiba mais <br> sobre o projeto</label>
+
+        <p class="project-description-text">
+          Esse site tem como objetivo aprimorar meus conhecimentos de API e SCSS
+          para essa ocasião foi consumida a API graphQL do Anillist da qual não
+          possuia experiência e me permitiu entender um pouco mais sobre JS
+          assincrono
+        </p>
+      </section>
+
+      <section class="search">
+        <label for="search-bar"> Anime ou seu usuário do Anilist: </label>
+        <input type="search" name="search-bar" id="search-bar" />
+        <div class="search-options">
+          <label for="search-anime">
+            <input
+              type="radio"
+              name="radio-options"
+              id="search-anime"
+              checked="true"
+            />
+            <span>Buscar Animes</span>
+          </label>
+          <label for="search-user">
+            <input type="radio" name="radio-options" id="search-user" />
+            <span>Buscar Usuários</span>
+          </label>
+        </div>
+
+        <p>
+          Vamos lá ! Marque os animese que você também gosta <br />
+          E me marca lá no IN ou no Twitter
+        </p>
+      </section>
+
+      <section class="card-container">
+        <h2>Animes:</h2>
+        <article class="card-wrapper">
+          <img />
+          <p>Nome Do anime</p>
+        </article>
+      </section>
+    </main>
+  </body>
+</html>
