@@ -1,180 +1,299 @@
 $color-main: orange;
-$color-second: #1A1A1A;
+$color-second: #1a1a1a;
 $color-text: white;
 
-
-
 * {
-    margin: 0;
-    border: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  border: 0;
+  padding: 0;
+  box-sizing: border-box;
 
-    font-size: 1rem;
-    font-family: 'Segoe UI';
+  font-size: 1rem;
+  font-family: "Segoe UI";
 }
 
 @mixin flex-col-center {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-items: center;
 }
 
 @mixin absolute-center {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
-body{
-    background: $color-second;
-    color: $color-text;
+html,
+body {
+  height: -webkit-fill-avaliable;
+  height: -moz-fill-avaliable;
+  height: fill-avaliable;
+}
+
+body {
+  background: $color-second;
+  color: $color-text;
 }
 
 main {
-    @include flex-col-center();
-    width: 90vw;
-    margin: auto;
-
+  @include flex-col-center();
+  width: 90vw;
+  margin: auto;
 }
 
 header {
-    background: $color-main;
-    width: 100%;
-    box-shadow: 0 2px 2px darken($color-main, $amount: 10%);
+  height: 7vh;
+  width: 100%;
+  padding: 0 1vh;
+  display: flex;
+  align-items: center;
+  background-image: url(./assets/img/nekko-arc.png),
+    linear-gradient($color-main, $color-main);
+  background-position: right, center;
+  background-size: 7vh, cover;
+  background-repeat: no-repeat;
+  box-shadow: 0 2px 2px darken($color-main, $amount: 10%);
 
-    h1 {
-        font-size: 2rem;
-        letter-spacing: 0.1rem;
-    }
+  h1 {
+    font-size: 2rem;
+    letter-spacing: 0.1rem;
+  }
 
-    button {
-        background: greenyellow;
-        color: $color-main;
-        text-transform: uppercase;
-        padding: 1vh 2.5vh;
-    }
+  button {
+    background: greenyellow;
+    color: $color-main;
+    text-transform: uppercase;
+    padding: 1vh 2.5vh;
+  }
 }
 
 .project-description {
-    margin: 3vh 0;
-    position: relative;
+  margin: 3vh 0;
+  position: relative;
 
-    .project-description-circular-bg {
-        @include absolute-center();
-        height: 100%;
-        aspect-ratio: 1/1;
-        filter: blur(10px);
-        border-radius: 50%;
-        background: adjust-color($color-second, $lightness: 2%);
-        background-size: cover;
-        z-index: -999;
+  .project-description-circular-bg {
+    @include absolute-center();
+    height: 100%;
+    aspect-ratio: 1/1;
+    filter: blur(10px);
+    border-radius: 50%;
+    background: adjust-color($color-second, $lightness: 2%);
+    background-size: cover;
+    z-index: -999;
+  }
+
+  p {
+    opacity: 0;
+    font-size: 1.1rem;
+
+    text-align: justify;
+    text-align-last: center;
+  }
+
+  #project-description-button {
+    position: absolute;
+  }
+
+  .project-description-button-label {
+    @include absolute-center();
+
+    opacity: 1;
+    color: $color-text;
+
+    font-size: 1.5rem;
+    text-transform: uppercase;
+    text-align: center;
+    white-space: nowrap;
+    text-shadow: 0px 2px black;
+
+    transition: opacity 0.3s;
+    animation: bob 1s infinite alternate ease-in-out;
+
+    @keyframes bob {
+      from {
+        top: 45%;
+      }
+      to {
+        top: 55%;
+      }
+    }
+  }
+
+  #project-description-button {
+    appearance: none;
+    position: absolute;
+    z-index: 999;
+    width: 100%;
+    height: 100%;
+  }
+
+  #project-description-button:checked {
+    + .project-description-button-label {
+      opacity: 0;
     }
 
-    p {
-        opacity: 0;
-        font-size: 1.1rem;
-        
-        text-align: justify;
-        text-align-last: center;
+    ~ p {
+      opacity: 1;
     }
-
-
-    #project-description-button {
-        position: absolute;
-
-    }
-
-    .project-description-button-label {
-        @include absolute-center();
-        
-        opacity: 1;
-        color: $color-text;
-
-        font-size: 1.5rem;
-        text-transform: uppercase;
-        text-align: center;
-        white-space: nowrap;
-        text-shadow: 0px 2px black ;
-
-        transition: opacity 0.3s;
-        animation: bob 1s infinite alternate ease-in-out;
-
-        @keyframes bob {
-            from {top: 45%;}
-            to {top: 55%;}
-        }
-    }
-    
-
-    #project-description-button {
-        appearance: none;
-        position: absolute;
-        z-index: 999;
-        width: 100%;
-        height: 100%;
-    }
-
-    #project-description-button:checked:checked {
-
-        + .project-description-button-label{
-        opacity: 0;
-        }
-
-        ~ p {
-            opacity: 1;
-        }
-    }
+  }
 }
 
 .search {
+  @include flex-col-center();
+  margin-top: 5vh;
 
-    
-    @include flex-col-center();
-    // background: darkkhaki;
+  > label {
+    font-size: 1.3rem;
+    margin-bottom: 1vh;
+    color: $color-main;
+  }
 
-    > label {
-        font-size: 1.3rem;
-        margin-bottom: 0.5vh;
-        color: $color-main;
-    }
-
-    input[type="search"] {
-        width: 100%;
-        font-size: 1.1rem;
-        outline: 2px solid $color-text;
-        background: lighten($color-second, $amount: 10%);
-    }
+  input[type="search"] {
+    width: 100%;
+    font-size: 1.1rem;
+    outline: 2px solid $color-text;
+    background: lighten($color-second, $amount: 10%);
+  }
 }
 
-.search-options{
-    display: flex;
+.search-options {
+  display: flex;
+  width: 100%;
+  margin-top: 1vh;
+  gap: 2vh;
+
+  label {
     width: 100%;
-    margin-top: 1.2vh;
+    cursor: pointer;
+    text-align: center;
+    white-space: nowrap;
+  }
 
-    label {
-        cursor: pointer;
-        width: 100%;
-        // border: 2px solid orange;
+  span {
+    font-size: 1.3rem;
+    transition: color 0.4s;
+  }
+
+  input[type="radio"] {
+    display: none;
+  }
+
+  input[type="radio"]:checked ~ span {
+    color: $color-main;
+  }
+
+  input[type="radio"]:checked ~ span:active {
+    color: $color-main;
+  }
+}
+
+#animes {
+    margin-top: 6vh;
+    width: 100%;
+
+    > h2 {
+        color: $color-main;
+        margin-bottom: 3vh;
+        font-size: 1.4rem;
         text-align: center;
-    }
+      }
 
-    span{
-        font-size: 1.3rem;
-        transition: color 0.4s;
-    }
+  .card-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
     
-    input[type="radio"] {
-        display: none;
+    border: 0.5vh solid $color-main;
+    padding: 5vh 0;
+    gap: 10vh;
+
+    .card-body {
+      position: relative;
+      width: 25vh;
+
+   .checked {
+        outline: 0.5vh solid green;
     }
 
-    input[type="radio"]:checked ~ span {
-        color: $color-main;
-    }
 
-    input[type="radio"]:checked ~ span:active{
-        color: $color-main;
+      label {
+        @include flex-col-center();
+        align-items: stretch;
+        text-align: center;
+        align-self: center;
+        cursor: pointer;
+        z-index: 999;
+
+
+
+        input[type="checkbox"] {
+          appearance: none;
+          position: absolute;
+          top: 2%;
+          right: 2%;
+          padding: 2vh;
+          border-radius: 50%;
+
+          opacity: 0;
+          transition: 0.3s opacity;
+
+          &:checked {
+            transform: scale(1);
+            border: 3px solid green;
+            background: url(./assets/svg/checked.svg), green;
+            background-position: center;
+            background-size: contain;
+            background-repeat: no-repeat;
+            opacity: 1;
+          }
+        }
+      }
+
+      img {
+        display: block;
+        max-width: 100%;
+        user-select: none;
+        pointer-events: none
+      }
+
+      p {
+        padding: 2% 5%;
+        background: $color-main;
+        color: white;
+        font-weight: bold;
+        font-size: 1.1rem;
+        user-select: none;
+      }
     }
+  }
+}
+
+footer {
+  position: fixed;  
+  bottom: 0;
+
+  width: 100%;
+  padding: 1vh 5%;
+  background: $color-main;
+  box-shadow: 0 -2px 2px darken($color-main, $amount: 10%);
+
+  button {
+    float: right;
+    padding: 1rem;
+    
+    color: $color-text;
+    letter-spacing: 0.15rem;
+    font-weight: bold;
+    background: $color-second;
+    cursor: pointer;
+
+    &:active {
+      left: -10px;
+      color: $color-main;
+      transform: translateY(-2px);
+    }
+  }
 }

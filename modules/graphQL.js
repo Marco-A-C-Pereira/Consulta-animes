@@ -5,7 +5,7 @@ async function mainUserFetch () {
       {
         User(name: "DKClaude") {
           favourites {
-            anime(perPage: 15) {
+            anime {
               nodes {
                 title {
                   english

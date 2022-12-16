@@ -4,7 +4,10 @@
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <title>Consulta Animes</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"
+    />
     <link rel="stylesheet" href="style.css" />
     <script type="module" src="main.js"></script>
   </head>
@@ -12,21 +15,27 @@
     <header>
       <h1>Lista de Animes</h1>
       <nav>
-        <button>Comparar</button>
+        <!-- <button>Comparar</button> -->
       </nav>
     </header>
     <main>
       <section class="project-description">
-            <div class="project-description-circular-bg"></div>
+        <div class="project-description-circular-bg"></div>
 
-        <input type="checkbox" id="project-description-button"/>
-        <label class="project-description-button-label" for="project-description-button"> Saiba mais <br> sobre o projeto</label>
+        <input type="checkbox" id="project-description-button" />
+        <label
+          class="project-description-button-label"
+          for="project-description-button"
+        >
+          Saiba mais <br />
+          sobre o projeto</label
+        >
 
         <p class="project-description-text">
-          Esse site tem como objetivo aprimorar meus conhecimentos de API e SCSS
-          para essa ocasião foi consumida a API graphQL do Anillist da qual não
-          possuia experiência e me permitiu entender um pouco mais sobre JS
-          assincrono
+          Esse projeto tem como objetivo aprimorar meus conhecimentos de APIS e
+          SCSS foi consumida a API graphQL do Anillist da qual não possuia
+          experiência e me permitiu entender como são realizadas a requisições e
+          como funciona JS assincrono na prática.
         </p>
       </section>
 
@@ -48,19 +57,24 @@
             <span>Buscar Usuários</span>
           </label>
         </div>
-
-        <p>
-          Vamos lá ! Marque os animese que você também gosta <br />
-          E me marca lá no IN ou no Twitter
-        </p>
       </section>
 
-      <section class="card-container">
+      <section id="animes">
         <h2>Animes:</h2>
-        <article class="card-wrapper">
-          <img />
-          <p>Nome Do anime</p>
-        </article>
+        <div class="card-container">
+
+        </div>
+      </section>
+
+      <footer>
+        <button> Comparar </button>
+      </footer>
+
+      <section class="modal">
+        <div class="modal-wrapper">
+          <button> X </button>
+          <p>Você gosta de <span>23/100</span> animes</p>  
+        </div>
       </section>
     </main>
   </body>

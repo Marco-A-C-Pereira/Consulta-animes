@@ -7,8 +7,15 @@
   font-family: "Segoe UI";
 }
 
+html,
 body {
-  background: #1A1A1A;
+  height: -webkit-fill-avaliable;
+  height: -moz-fill-avaliable;
+  height: fill-avaliable;
+}
+
+body {
+  background: #1a1a1a;
   color: white;
 }
 
@@ -22,8 +29,15 @@ main {
 }
 
 header {
-  background: orange;
+  height: 7vh;
   width: 100%;
+  padding: 0 1vh;
+  display: flex;
+  align-items: center;
+  background-image: url(./assets/img/nekko-arc.png), linear-gradient(orange, orange);
+  background-position: right, center;
+  background-size: 7vh, cover;
+  background-repeat: no-repeat;
   box-shadow: 0 2px 2px #cc8400;
 }
 header h1 {
@@ -93,10 +107,10 @@ header button {
   width: 100%;
   height: 100%;
 }
-.project-description #project-description-button:checked:checked + .project-description-button-label {
+.project-description #project-description-button:checked + .project-description-button-label {
   opacity: 0;
 }
-.project-description #project-description-button:checked:checked ~ p {
+.project-description #project-description-button:checked ~ p {
   opacity: 1;
 }
 
@@ -105,10 +119,11 @@ header button {
   flex-direction: column;
   align-items: center;
   justify-items: center;
+  margin-top: 5vh;
 }
 .search > label {
   font-size: 1.3rem;
-  margin-bottom: 0.5vh;
+  margin-bottom: 1vh;
   color: orange;
 }
 .search input[type=search] {
@@ -121,12 +136,14 @@ header button {
 .search-options {
   display: flex;
   width: 100%;
-  margin-top: 1.2vh;
+  margin-top: 1vh;
+  gap: 2vh;
 }
 .search-options label {
-  cursor: pointer;
   width: 100%;
+  cursor: pointer;
   text-align: center;
+  white-space: nowrap;
 }
 .search-options span {
   font-size: 1.3rem;
@@ -140,6 +157,99 @@ header button {
 }
 .search-options input[type=radio]:checked ~ span:active {
   color: orange;
+}
+
+#animes {
+  margin-top: 6vh;
+  width: 100%;
+}
+#animes > h2 {
+  color: orange;
+  margin-bottom: 3vh;
+  font-size: 1.4rem;
+  text-align: center;
+}
+#animes .card-container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  border: 0.5vh solid orange;
+  padding: 5vh 0;
+  gap: 10vh;
+}
+#animes .card-container .card-body {
+  position: relative;
+  width: 25vh;
+}
+#animes .card-container .card-body .checked {
+  outline: 0.5vh solid green;
+}
+#animes .card-container .card-body label {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-items: center;
+  align-items: stretch;
+  text-align: center;
+  align-self: center;
+  cursor: pointer;
+  z-index: 999;
+}
+#animes .card-container .card-body label input[type=checkbox] {
+  appearance: none;
+  position: absolute;
+  top: 2%;
+  right: 2%;
+  padding: 2vh;
+  border-radius: 50%;
+  opacity: 0;
+  transition: 0.3s opacity;
+}
+#animes .card-container .card-body label input[type=checkbox]:checked {
+  transform: scale(1);
+  border: 3px solid green;
+  background: url(./assets/svg/checked.svg), green;
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  opacity: 1;
+}
+#animes .card-container .card-body img {
+  display: block;
+  max-width: 100%;
+  user-select: none;
+  pointer-events: none;
+}
+#animes .card-container .card-body p {
+  padding: 2% 5%;
+  background: orange;
+  color: white;
+  font-weight: bold;
+  font-size: 1.1rem;
+  user-select: none;
+}
+
+footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  padding: 1vh 5%;
+  background: orange;
+  box-shadow: 0 -2px 2px #cc8400;
+}
+footer button {
+  float: right;
+  padding: 1rem;
+  color: white;
+  letter-spacing: 0.15rem;
+  font-weight: bold;
+  background: #1a1a1a;
+  cursor: pointer;
+}
+footer button:active {
+  left: -10px;
+  color: orange;
+  transform: translateY(-2px);
 }
 
 /*# sourceMappingURL=style.css.map */
