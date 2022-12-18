@@ -1,4 +1,4 @@
-export { mainUserFetch };
+export { mainUserFetch, compareUser};
 
 async function mainUserFetch () {
     const query = `
@@ -21,7 +21,28 @@ async function mainUserFetch () {
       }  
     `;
     
-  return querryGen(query)
+  return querryGen(query).then(response => response.data.User.favourites.anime.nodes)
+}
+
+async function compareUser(user) {
+  const query = `
+    {
+      User(name: "${user}") {
+        favourites {
+          anime {
+            nodes {
+              title {
+                english
+                romaji
+              }
+            }
+          }
+        }
+      }
+    }  
+  `;
+
+  return querryGen(query).then(response => response.data.User.favourites.anime.nodes)
 }
 
 function querryGen(query) {
@@ -32,6 +53,6 @@ function querryGen(query) {
       query
     }),
   }) 
-  .then(response => response.json()).then(response => response.data.User.favourites.anime.nodes)
+  .then(response => response.json())
 }
 
