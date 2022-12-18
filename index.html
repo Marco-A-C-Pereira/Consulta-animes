@@ -67,14 +67,26 @@
       </section>
 
       <footer>
-        <button> Comparar </button>
+        <button id="finish"> Comparar </button>
       </footer>
 
-      <section class="modal">
+      <section class="modal" id="modal">
         <div class="modal-wrapper">
-          <button> X </button>
-          <p>Você gosta de <span>23/100</span> animes</p>  
-        </div>
+          <button id="modal-close"> X </button>
+          <div class="modal-text">
+            <p>Você assistiu <span id="modal-counter">(0 / 0)</span> animes da minha lista</p>  
+            <div class="modal-results" id="modal-results">
+
+            </div>
+            <p>Compatilha e me marca no Twitter ou Linkedin com seus resultados </p>    
+          </div>
+          <div class="modal-links">
+            <a href="#">LinkedIn</a>
+            <a href="#">Twitter</a>
+            <a href="#">Github</a>
+          </div>
+           </div>
+
       </section>
     </main>
   </body>

@@ -3,7 +3,7 @@ export { mainUserFetch };
 async function mainUserFetch () {
     const query = `
       {
-        User(name: "DKClaude") {
+        User(name: "MarcoAP") {
           favourites {
             anime {
               nodes {
@@ -32,6 +32,6 @@ function querryGen(query) {
       query
     }),
   }) 
-  .then(response => response.json())
+  .then(response => response.json()).then(response => response.data.User.favourites.anime.nodes)
 }
 

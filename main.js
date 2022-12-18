@@ -1,7 +1,9 @@
 import { mainUserFetch } from './modules/graphQL.js'
 
 let animeList = await mainUserFetch()
+const animeCards = [];
 document.addEventListener('load', objBuild(animeList) )
+
 
 // Impede o teclado do mobile de mudar o viewport
 window.addEventListener('load', () => {
@@ -11,10 +13,9 @@ window.addEventListener('load', () => {
 });
 
 
-
 function objBuild(animeList) {
 
-    animeList.data.User.favourites.anime.nodes.forEach((anime) => {
+    animeList.forEach((anime) => {
       const animeName = anime.title.english ? anime.title.english : anime.title.romaji
       const animeCover = anime.coverImage.large
   
@@ -24,7 +25,6 @@ function objBuild(animeList) {
       const animeLabel = document.createElement('label');
         animeLabel.for = animeName;
 
-        // Not working
         animeLabel.addEventListener('click', (e) => {
           animeLabel.classList.toggle('checked');
         } );
@@ -35,6 +35,7 @@ function objBuild(animeList) {
           e.stopPropagation();
           !input.checked;
           alterList(animeTitle.innerHTML);
+          showFooter();
         })
 
       const animeImg = document.createElement('img');
@@ -43,22 +44,98 @@ function objBuild(animeList) {
       const animeTitle = document.createElement('p');
         animeTitle.innerText = animeName;
 
-      const cardContainer = document.querySelector('.card-container');
+        //appends
+
+      // const cardContainer = document.querySelector('.card-container');
       const imgContainer = document.createElement('div');
         imgContainer.classList.add("imgContainer");
       const textContainer = document.createElement('div');
         textContainer.classList.add("textContainer");
 
-      cardContainer.appendChild(cardBody).appendChild(animeLabel)
+      cardBody.appendChild(animeLabel)
       animeLabel.append(input, animeImg, animeTitle)
 
-
-    });
+      
+      animeCards.push(cardBody);
+    });  
+    appendCards(animeCards);
   }
+
+  function appendCards(cards) { document.querySelector('.card-container').replaceChildren(...cards); }
+
+  function appendError() {
+    const errorWrapper = document.createElement('section');
+      const errorText = document.createElement('p');
+        errorText.innerText = "Nenhum Anime Encontrado :/";
+      const errorSugest = document.createElement('p');
+        errorSugest.innerText = "Verifique o nome ou talvez ainda não tenha assistido esse anime"
+
+      errorWrapper.append(errorText, errorSugest);
+
+    document.querySelector('.card-container').replaceChildren(errorWrapper);
+  }
+
+ // Src Bar
+
+  const searchBar = document.getElementById("search-bar");
+    searchBar.addEventListener("input", (e) => {
+
+      let animeQuerryResult = animeCards.filter(card => card.innerText.toLowerCase().includes(e.target.value.toLowerCase()))
+
+      if (e.target.value == false) { appendCards(animeCards) } // ReplaceChildren com AnimeCards
+      else if (animeQuerryResult.length === 0 ){ appendError() } // appendError() 
+      else { appendCards(animeQuerryResult) } // Controle de estado ? 
+
+    })
+
+
+
 
   var userList = [];
   function alterList(animeTitle) {
     !userList.includes(animeTitle) ? userList.push(animeTitle) : userList.splice(userList.indexOf(animeTitle), 1)
-    console.log(userList.length)
-    console.log(animeList.data.User.favourites.anime.nodes.length)
+    
+
   }
+  const footer = document.getElementsByTagName('footer')[0];
+  function showFooter() {
+    let hasItens = userList.length === 0; 
+    hasItens ? footer.style.transform = 'translate(0, 200%)' : footer.style.transform = 'translate(0, 0)'
+  }
+
+  //Modal
+  const modal = document.getElementById('modal');
+  const modalcolse = document.getElementById('modal-close');
+   modalcolse.addEventListener('click', () => { 
+    modal.style.display = 'none'
+    document.body.classList.remove("noscroll");
+    footer.style.transform = 'translate(0, 0)'
+    });
+
+
+  const finish = document.getElementById('finish');
+    finish.addEventListener('click', () => {
+      modal.style.display = 'block';
+      document.body.classList.add("noscroll");
+      footer.style.transform = 'translate(0, 200%)'
+      alterCounter(userList.length, animeList.length);
+      showResultsList();
+    });
+
+  const modalCounter = document.getElementById('modal-counter');
+    function alterCounter(userList, ownerList) {
+      modalCounter.innerText = `(${userList} / ${ownerList})`;
+    }
+
+  const modalResults = document.getElementById('modal-results');
+    function showResultsList () {
+      const resultList = document.createElement('ul');
+      modalResults.replaceChildren();
+      modalResults.appendChild(resultList);
+      
+    userList.forEach(item => {
+        let listItem = document.createElement('li');
+        listItem.innerText = item;
+        resultList.appendChild(listItem)
+     })
+    }

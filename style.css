@@ -18,6 +18,9 @@ body {
   background: #1a1a1a;
   color: white;
 }
+body.noscroll {
+  overflow: hidden;
+}
 
 main {
   display: flex;
@@ -119,7 +122,7 @@ header button {
   flex-direction: column;
   align-items: center;
   justify-items: center;
-  margin-top: 5vh;
+  margin-top: 3vh;
 }
 .search > label {
   font-size: 1.3rem;
@@ -131,6 +134,8 @@ header button {
   font-size: 1.1rem;
   outline: 2px solid white;
   background: #343434;
+  color: white;
+  padding-left: 1%;
 }
 
 .search-options {
@@ -232,10 +237,12 @@ header button {
 footer {
   position: fixed;
   bottom: 0;
+  transform: translate(0, 200%);
   width: 100%;
-  padding: 1vh 5%;
+  padding: 0.5vh 5%;
   background: orange;
   box-shadow: 0 -2px 2px #cc8400;
+  transition: transform 1s ease-out;
 }
 footer button {
   float: right;
@@ -250,6 +257,87 @@ footer button:active {
   left: -10px;
   color: orange;
   transform: translateY(-2px);
+}
+
+.modal {
+  display: none;
+  height: 100%;
+  width: 100%;
+  z-index: 999;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: #1a1a1a;
+  animation: 1s modalSlide;
+}
+@keyframes modalSlide {
+  from {
+    top: -100%;
+  }
+  to {
+    top: 0;
+  }
+}
+.modal .modal-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-items: center;
+}
+.modal .modal-wrapper > button {
+  font-size: 1.5rem;
+  padding: 10px;
+  background: transparent;
+  color: white;
+  align-self: flex-end;
+}
+.modal .modal-wrapper .modal-text {
+  text-align: center;
+  font-size: 1.1rem;
+}
+.modal .modal-wrapper .modal-text span {
+  font-weight: bold;
+  color: orange;
+}
+.modal .modal-wrapper .modal-text p {
+  margin-top: 3vh;
+  font-size: 1.4rem;
+}
+.modal .modal-wrapper .modal-text p:last-child {
+  margin-top: 1vh;
+  font-size: 1.1rem;
+}
+.modal .modal-wrapper .modal-results {
+  margin-top: 2vh;
+  max-height: 60vh;
+  width: 80%;
+  margin: auto;
+  overflow-y: scroll;
+}
+.modal .modal-wrapper .modal-results ul {
+  list-style: none;
+  background: #ffc966;
+}
+.modal .modal-wrapper .modal-results ul li {
+  background: orange;
+  font-size: 1.1rem;
+  margin-top: 0.3vh;
+  padding: 0.5vh;
+}
+.modal .modal-wrapper .modal-links {
+  margin-top: 5vh;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+}
+.modal .modal-wrapper .modal-links a {
+  font-weight: bold;
+  color: white;
+  text-decoration: none;
+  letter-spacing: 0.1rem;
+  padding: 1vh 2vh;
+  background: orange;
+  border-radius: 10px 10px 0 0;
 }
 
 /*# sourceMappingURL=style.css.map */

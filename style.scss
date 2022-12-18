@@ -36,7 +36,12 @@ body {
 body {
   background: $color-second;
   color: $color-text;
+
+  &.noscroll {
+    overflow: hidden;
+  }
 }
+
 
 main {
   @include flex-col-center();
@@ -143,7 +148,7 @@ header {
 
 .search {
   @include flex-col-center();
-  margin-top: 5vh;
+  margin-top: 3vh;
 
   > label {
     font-size: 1.3rem;
@@ -156,6 +161,8 @@ header {
     font-size: 1.1rem;
     outline: 2px solid $color-text;
     background: lighten($color-second, $amount: 10%);
+    color: $color-text;
+    padding-left:1%;
   }
 }
 
@@ -274,12 +281,14 @@ header {
 footer {
   position: fixed;  
   bottom: 0;
+  transform: translate(0, 200%) ;
 
   width: 100%;
-  padding: 1vh 5%;
+  padding: 0.5vh 5%;
   background: $color-main;
   box-shadow: 0 -2px 2px darken($color-main, $amount: 10%);
 
+  transition: transform 1s ease-out;
   button {
     float: right;
     padding: 1rem;
@@ -296,4 +305,94 @@ footer {
       transform: translateY(-2px);
     }
   }
+}
+
+.modal {
+  display: none;
+  height: 100%; width: 100%;
+  z-index: 999;
+  position: fixed;
+  top: 0; left: 0;
+  background: $color-second;
+  
+  animation: 1s modalSlide;
+
+  @keyframes modalSlide {
+    from { top: -100%; }
+    to {top: 0; }
+  }
+  
+  .modal-wrapper {
+    @include flex-col-center();
+
+    > button {
+      font-size: 1.5rem;
+      padding: 10px;
+      background: transparent;
+      color: $color-text;
+      align-self: flex-end;
+    }
+
+    .modal-text {
+      text-align: center;
+      font-size: 1.1rem;
+
+      span{
+        font-weight: bold;
+        color: $color-main;
+      }
+
+      p {
+        margin-top: 3vh;
+        font-size: 1.4rem;
+      }
+      p:last-child{
+        margin-top: 1vh;
+        font-size: 1.1rem;
+      }
+    }
+
+    .modal-results{
+      margin-top:2vh;
+      max-height: 60vh;
+      width: 80%;
+      margin: auto;
+      overflow-y: scroll;
+
+      ul {
+        list-style: none;
+        background: lighten($color-main, 20%);
+
+        li {
+          background: $color-main;
+          font-size: 1.1rem;
+          margin-top:0.3vh;
+          padding: 0.5vh;
+        }
+      }
+      
+    }
+
+    .modal-links{
+      margin-top: 5vh;
+      width: 100%;
+      display: flex;
+      justify-content:space-around ;
+
+      a {
+        font-weight: bold;
+        color: $color-text;
+        text-decoration: none;
+        letter-spacing: 0.1rem;
+        padding: 1vh 2vh; 
+        background: $color-main;
+        border-radius: 10px 10px 0 0;
+      }
+    }
+
+    
+    
+
+  }
+
 }
