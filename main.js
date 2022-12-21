@@ -104,12 +104,37 @@ function objBuild(animeList) {
     })
 
     const searchUser = debounce( async (userInput)=>{
-      let results = await compareUser(userInput).then(response => response.map(node => node.title.english ? node.title.english : node.title.romaji))
-      const matchCards = animeCards.filter(card => results.includes(card.innerText)); // Retorna os meus cards que tem match
+      try { 
+        let results = await compareUser(userInput).then(response => response.map(node => node.title.english ? node.title.english : node.title.romaji))
+      
 
-      matchCards.forEach(card => card.children[0].click() )
-      console.log("clicked ?")
+        const matchCards = animeCards.filter(card => results.includes(card.innerText)); // Retorna os meus cards que tem match
+        matchCards.forEach(card => card.children[0].click() )
+        addSnackbar(`Animes de ${userInput} selecionados`, 'snackSuccess')
+      }
+      catch { 
+        if (userInput) { addSnackbar(`Usuario ${userInput} não encontrado`, 'snackError') }}
     });
+
+    function addSnackbar(msg, msgType) {
+      if (document.getElementsByClassName('snackbar')[0]) {document.getElementsByClassName('snackbar')[0].remove()}
+
+      const snackContainer = document.createElement('div');
+      snackContainer.classList.add('snackbar', msgType)
+      snackContainer.innerText = msg;
+      
+      document.querySelector('main').appendChild(snackContainer);
+
+      const snackFade = snackContainer.animate([{ opacity: 0 }, { opacity: 1 }], {duration: 1000,  fill: "forwards"} )
+      setTimeout(() => {snackFade.reverse();}, 5000);
+      setTimeout(() => {snackContainer.remove()}, 6000); // Há uma solução melhor ? 
+
+      snackContainer.addEventListener('click', (e)=>{
+        e.preventDefault();
+        snackFade.reverse()
+        setTimeout(()=> {snackContainer.remove()}, 1000)
+      })
+    }
 
   var userList = [];
   function alterList(animeTitle) {
