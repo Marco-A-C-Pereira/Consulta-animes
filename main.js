@@ -14,7 +14,6 @@ window.addEventListener('load', () => {
 
 
 function objBuild(animeList) {
-
     animeList.forEach((anime) => {
       const animeName = anime.title.english ? anime.title.english : anime.title.romaji
       const animeCover = anime.coverImage.large
@@ -106,7 +105,7 @@ function objBuild(animeList) {
     const searchUser = debounce( async (userInput)=>{
       try { 
         let results = await compareUser(userInput).then(response => response.map(node => node.title.english ? node.title.english : node.title.romaji))
-      
+        
 
         const matchCards = animeCards.filter(card => results.includes(card.innerText)); // Retorna os meus cards que tem match
         matchCards.forEach(card => card.children[0].click() )
